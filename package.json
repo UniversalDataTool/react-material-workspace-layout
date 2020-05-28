@@ -10,12 +10,10 @@
     "use-event-callback": "^0.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "start-storybook -p 9009 -s public",
+    "build": "NODE_ENV=production babel ./src --ignore \"src/**/*.stories.js\" --out-dir=./dist && cp package.json ./dist/package.json",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build:storybook": "build-storybook -s public"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -33,15 +31,22 @@
     ]
   },
   "devDependencies": {
-    "react-scripts": "3.4.1",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "react-dom": "^16.13.1",
+    "@babel/cli": "^7.10.1",
+    "@babel/core": "^7.10.1",
     "@storybook/addon-actions": "^5.3.18",
     "@storybook/addon-links": "^5.3.18",
     "@storybook/addons": "^5.3.18",
     "@storybook/preset-create-react-app": "^3.0.0",
-    "@storybook/react": "^5.3.18"
+    "@storybook/react": "^5.3.18",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "babel-loader": "^8.1.0",
+    "babel-preset-react-app": "^9.1.2",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.1"
+  },
+  "prettier": {
+    "semi": false
   }
 }
