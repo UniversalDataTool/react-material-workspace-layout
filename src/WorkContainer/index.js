@@ -1,10 +1,12 @@
 import React from "react"
 import { styled } from "@material-ui/core/styles"
+import { grey } from "@material-ui/core/colors"
 
 const Container = styled("div")({
   position: "relative",
   flexGrow: 1,
   height: "100%",
+  backgroundColor: grey[50],
 })
 const ShadowOverlay = styled("div")({
   content: "' '",

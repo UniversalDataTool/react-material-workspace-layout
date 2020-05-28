@@ -9,6 +9,7 @@ import Collapse from "@material-ui/core/Collapse"
 import { grey } from "@material-ui/core/colors"
 import classnames from "classnames"
 import useEventCallback from "use-event-callback"
+import Typography from "@material-ui/core/Typography"
 
 const useStyles = makeStyles({
   container: { margin: 8 },
@@ -78,9 +79,9 @@ export const SidebarBox = ({
     <Paper className={classes.container}>
       <div className={classes.header}>
         {icon}
-        <div className={classes.title}>
+        <Typography className={classes.title}>
           {title} <span>{subTitle}</span>
-        </div>
+        </Typography>
         <IconButton onClick={toggleExpanded} className={classes.expandButton}>
           <ExpandIcon className={classnames("icon", expanded && "expanded")} />
         </IconButton>
