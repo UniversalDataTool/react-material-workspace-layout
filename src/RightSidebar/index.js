@@ -62,14 +62,19 @@ const getInitialExpandedState = () => {
   return Boolean(window.__REACT_WORKSPACE_LAYOUT_EXPANDED_STATE)
 }
 
-export const RightSidebar = ({ children }) => {
+export const RightSidebar = ({ children, initialExpandedState }) => {
   const [expanded, toggleExpanded] = useReducer(
     (state) => !state,
-    getInitialExpandedState()
+    initialExpandedState === undefined
+      ? getInitialExpandedState()
+      : initialExpandedState
   )
+
   useEffect(() => {
-    window.__REACT_WORKSPACE_LAYOUT_EXPANDED_STATE = expanded
-  }, [expanded])
+    if (initialExpandedState !== undefined) {
+      window.__REACT_WORKSPACE_LAYOUT_EXPANDED_STATE = expanded
+    }
+  }, [initialExpandedState, expanded])
 
   return (
     <Container className={expanded ? "expanded" : ""}>
