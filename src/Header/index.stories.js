@@ -1,5 +1,6 @@
 import React from "react"
 import Header from "./"
+import { action } from "@storybook/addon-actions"
 
 export default {
   title: "Header",
@@ -9,6 +10,7 @@ export default {
 export const Basic = () => (
   <Header
     leftSideContent="Left Side Content"
+    onClickItem={action("onClickItem")}
     items={[
       { name: "Prev" },
       { name: "Next" },

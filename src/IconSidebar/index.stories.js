@@ -1,5 +1,6 @@
 import React from "react"
 import IconSidebar from "./"
+import { action } from "@storybook/addon-actions"
 
 export default {
   title: "IconSidebar",
@@ -8,6 +9,7 @@ export default {
 
 export const Basic = () => (
   <IconSidebar
+    onClickItem={action("onClickItem")}
     items={[
       {
         name: "Play",

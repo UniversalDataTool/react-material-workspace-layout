@@ -12,20 +12,29 @@ const Container = styled("div")({
 
 type Props = {|
   leftSideContent?: ?React.Node,
+  onClickItem?: Function,
   items: Array<{|
     name: string,
     icon?: ?React.Node,
-    onClick: Function,
+    onClick?: Function,
   |}>,
 |}
 
-export const Header = ({ leftSideContent = null, items }: Props) => {
+export const Header = ({
+  leftSideContent = null,
+  items,
+  onClickItem,
+}: Props) => {
   return (
     <Container>
       {leftSideContent}
       <Box flexGrow={1}></Box>
       {items.map((item) => (
-        <HeaderButton key={item.name} {...item} />
+        <HeaderButton
+          key={item.name}
+          onClick={() => onClickItem(item)}
+          {...item}
+        />
       ))}
     </Container>
   )

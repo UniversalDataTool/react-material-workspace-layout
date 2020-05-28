@@ -20,7 +20,7 @@ type Props = {
   |}>,
 }
 
-export const IconSidebar = ({ items = [] }: Props) => {
+export const IconSidebar = ({ items = [], onClickItem }: Props) => {
   return (
     <Container>
       {items.map((item) => {
@@ -31,7 +31,7 @@ export const IconSidebar = ({ items = [] }: Props) => {
             key={item.name}
             color={item.selected ? "primary" : "none"}
             disabled={Boolean(item.disabled)}
-            onClick={item.onClick}
+            onClick={item.onClick ? item.onClick : () => onClickItem(item)}
           >
             {item.icon || <NameIcon />}
           </IconButton>
