@@ -22,10 +22,15 @@ export default ({
   rightSidebarItems = [],
   onClickHeaderItem,
   onClickIconSidebarItem,
+  headerLeftSide = null,
   children,
 }) => (
   <Container>
-    <Header onClickItem={onClickHeaderItem} items={headerItems} />
+    <Header
+      leftSideContent={headerLeftSide}
+      onClickItem={onClickHeaderItem}
+      items={headerItems}
+    />
     <SidebarsAndContent>
       {iconSidebarItems.length === 0 ? null : (
         <IconSidebar
