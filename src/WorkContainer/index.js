@@ -15,7 +15,7 @@ const ShadowOverlay = styled("div")({
   right: 0,
   top: 0,
   bottom: 0,
-  mouseEvents: "none",
+  pointerEvents: "none",
   boxShadow:
     "inset 0 3px 5px rgba(0,0,0,0.15), inset -3px 0 5px rgba(0,0,0,0.15), inset 3px 0 5px rgba(0,0,0,0.15)",
 })
