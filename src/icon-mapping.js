@@ -24,8 +24,9 @@ export const iconMapping = {
   exit: ExitIcon,
   quit: ExitIcon,
   save: ExitIcon,
+  done: ExitIcon,
   clone: QueuePlayNextIcon,
-  hoykeys: HotkeysIcon,
+  hotkeys: HotkeysIcon,
   shortcuts: HotkeysIcon,
 }
 

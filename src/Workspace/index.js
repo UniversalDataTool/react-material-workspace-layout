@@ -20,13 +20,18 @@ export default ({
   iconSidebarItems = [],
   headerItems = [],
   rightSidebarItems = [],
+  onClickHeaderItem,
+  onClickIconSidebarItem,
   children,
 }) => (
   <Container>
-    <Header items={headerItems} />
+    <Header onClickItem={onClickHeaderItem} items={headerItems} />
     <SidebarsAndContent>
       {iconSidebarItems.length === 0 ? null : (
-        <IconSidebar items={iconSidebarItems} />
+        <IconSidebar
+          onClickItem={onClickIconSidebarItem}
+          items={iconSidebarItems}
+        />
       )}
       <WorkContainer>{children}</WorkContainer>
       {rightSidebarItems.length === 0 ? null : (
