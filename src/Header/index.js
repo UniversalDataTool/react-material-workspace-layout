@@ -8,6 +8,7 @@ const Container = styled("div")({
   display: "flex",
   backgroundColor: "#fff",
   borderBottom: "1px solid #ccc",
+  alignItems: "center",
 })
 
 type Props = {|
