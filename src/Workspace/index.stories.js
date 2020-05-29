@@ -1,5 +1,5 @@
 import React from "react"
-import { linkTo } from "@storybook/addon-links"
+import { action } from "@storybook/addon-actions"
 import Workspace from "./"
 import SidebarBox from "../SidebarBox"
 import FeaturedVideoIcon from "@material-ui/icons/FeaturedVideo"
@@ -14,6 +14,8 @@ export const Basic = () => (
     <Workspace
       allowFullscreen
       headerItems={[{ name: "Prev" }, { name: "Next" }, { name: "Save" }]}
+      onClickHeaderItem={action("onClickHeaderItem")}
+      onClickIconSidebarItem={action("onClickIconSidebarItem")}
       iconSidebarItems={[
         {
           name: "Play",
