@@ -13,6 +13,7 @@ const Container = styled("div")({
   backgroundColor: "#fff",
   position: "relative",
   transition: "width 500ms",
+  overflow: "hidden",
   "&.expanded": {
     width: 300,
   },
