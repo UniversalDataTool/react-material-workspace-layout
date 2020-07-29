@@ -19,9 +19,11 @@ export const Basic = () => (
       iconSidebarItems={[
         {
           name: "Play",
+          helperText: "Play Tooltip",
         },
         {
           name: "Pause",
+          helperText: "Pause Tooltip",
         },
       ]}
       rightSidebarItems={[
