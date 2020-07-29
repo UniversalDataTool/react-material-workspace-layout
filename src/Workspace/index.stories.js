@@ -82,12 +82,13 @@ WithIconDictionary.story = {
 }
 
 export const FullWidthHeightViewport = () => (
-  <div style={{ width: "100vw", height: "100vh" }}>
+  <div style={{ width: "90vw", height: "90vh" }}>
     <Workspace
       allowFullscreen
       headerItems={[{ name: "Prev" }, { name: "Next" }, { name: "Save" }]}
       onClickHeaderItem={action("onClickHeaderItem")}
       onClickIconSidebarItem={action("onClickIconSidebarItem")}
+      selectedTools={["play"]}
       iconSidebarItems={[
         {
           name: "Play",

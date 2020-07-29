@@ -11,6 +11,7 @@ const Container = styled("div")({
   backgroundColor: "#fff",
   borderBottom: "1px solid #ccc",
   alignItems: "center",
+  boxSizing: "border-box",
 })
 
 type Props = {|

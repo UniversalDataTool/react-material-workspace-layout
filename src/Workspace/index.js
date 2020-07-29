@@ -29,6 +29,7 @@ const SidebarsAndContent = styled("div")({
 export default ({
   style = emptyObj,
   iconSidebarItems = emptyAr,
+  selectedTools = ["select"],
   headerItems = emptyAr,
   rightSidebarItems = emptyAr,
   onClickHeaderItem,
@@ -48,6 +49,7 @@ export default ({
         {iconSidebarItems.length === 0 ? null : (
           <IconSidebar
             onClickItem={onClickIconSidebarItem}
+            selectedTools={selectedTools}
             items={iconSidebarItems}
           />
         )}

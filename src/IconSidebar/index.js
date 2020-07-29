@@ -23,7 +23,11 @@ type Props = {
   |}>,
 }
 
-export const IconSidebar = ({ items = [], onClickItem }: Props) => {
+export const IconSidebar = ({
+  items = [],
+  onClickItem,
+  selectedTools,
+}: Props) => {
   const customIconMapping = useIconDictionary()
   return (
     <Container>
@@ -36,7 +40,11 @@ export const IconSidebar = ({ items = [], onClickItem }: Props) => {
         const buttonPart = (
           <IconButton
             key={item.name}
-            color={item.selected ? "primary" : "default"}
+            color={
+              item.selected || selectedTools.includes(item.name.toLowerCase())
+                ? "primary"
+                : "default"
+            }
             disabled={Boolean(item.disabled)}
             onClick={item.onClick ? item.onClick : () => onClickItem(item)}
           >
