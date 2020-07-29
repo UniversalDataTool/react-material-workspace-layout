@@ -14,12 +14,14 @@ const Container = styled("div")({
   flexDirection: "column",
   height: "100%",
   overflow: "hidden",
+  maxWidth: "100vw",
 })
 const SidebarsAndContent = styled("div")({
   display: "flex",
   flexGrow: 1,
   height: "100%",
   overflow: "hidden",
+  maxWidth: "100vw",
 })
 
 export default ({
