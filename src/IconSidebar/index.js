@@ -2,6 +2,7 @@ import React from "react"
 import { styled } from "@material-ui/core/styles"
 import IconButton from "@material-ui/core/IconButton"
 import { iconMapping } from "../icon-mapping.js"
+import { useIconDictionary } from "../icon-dictionary"
 
 const Container = styled("div")({
   width: 50,
@@ -21,11 +22,15 @@ type Props = {
 }
 
 export const IconSidebar = ({ items = [], onClickItem }: Props) => {
+  const customIconMapping = useIconDictionary()
   return (
     <Container>
       {items.map((item) => {
         let NameIcon =
-          iconMapping[item.name.toLowerCase()] || iconMapping["help"]
+          customIconMapping[item.name.toLowerCase()] ||
+          iconMapping[item.name.toLowerCase()] ||
+          iconMapping["help"]
+
         return (
           <IconButton
             key={item.name}

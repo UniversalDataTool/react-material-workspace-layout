@@ -3,6 +3,8 @@ import HeaderButton from "../HeaderButton"
 import Box from "@material-ui/core/Box"
 import { styled } from "@material-ui/core/styles"
 
+const emptyObj = {}
+
 const Container = styled("div")({
   width: "100%",
   display: "flex",

@@ -38,3 +38,41 @@ export const Basic = () => (
 Basic.story = {
   name: "Basic",
 }
+
+export const WithIconDictionary = () => (
+  <div style={{ height: 400 }}>
+    <Workspace
+      allowFullscreen
+      iconDictionary={{
+        "custom icon": FeaturedVideoIcon,
+      }}
+      headerItems={[
+        { name: "Prev" },
+        { name: "Next" },
+        { name: "Save" },
+        { name: "Custom Icon" },
+      ]}
+      onClickHeaderItem={action("onClickHeaderItem")}
+      onClickIconSidebarItem={action("onClickIconSidebarItem")}
+      iconSidebarItems={[
+        {
+          name: "Custom Icon",
+        },
+        {
+          name: "Pause",
+        },
+      ]}
+      rightSidebarItems={[
+        <SidebarBox icon={<FeaturedVideoIcon />} title="Region Selector">
+          Hello world!
+        </SidebarBox>,
+      ]}
+    >
+      Hello World!
+    </Workspace>
+  </div>
+)
+
+WithIconDictionary.story = {
+  name: "WithIconDictionary",
+}

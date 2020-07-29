@@ -10,6 +10,7 @@ import { grey } from "@material-ui/core/colors"
 import classnames from "classnames"
 import useEventCallback from "use-event-callback"
 import Typography from "@material-ui/core/Typography"
+import { useIconDictionary } from "../icon-dictionary.js"
 
 const useStyles = makeStyles({
   container: { margin: 8, border: "1px solid #ccc" },
@@ -75,10 +76,12 @@ export const SidebarBox = ({
 
   const [expanded, changeExpanded] = useState(expandedByDefault)
   const toggleExpanded = useEventCallback(() => changeExpanded(!expanded))
+  const customIconMapping = useIconDictionary()
+  const TitleIcon = customIconMapping[title.toLowerCase()]
   return (
     <Paper className={classes.container}>
       <div className={classes.header}>
-        {icon}
+        {icon || <TitleIcon />}
         <Typography className={classes.title}>
           {title} <span>{subTitle}</span>
         </Typography>
