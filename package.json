@@ -10,6 +10,7 @@
   },
   "scripts": {
     "start": "start-storybook -p 9009 -s public",
+    "storybook": "npm run start",
     "build": "rimraf dist && NODE_ENV=production babel ./src --ignore \"src/**/*.stories.js\" --out-dir=./dist && cp package.json ./dist/package.json",
     "test": "react-scripts test",
     "build:storybook": "build-storybook -s public"

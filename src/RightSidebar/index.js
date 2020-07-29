@@ -13,7 +13,6 @@ const Container = styled("div")({
   backgroundColor: "#fff",
   position: "relative",
   transition: "width 500ms",
-  overflow: "hidden",
   "&.expanded": {
     width: 300,
   },
@@ -37,6 +36,7 @@ const Expander = styled(ButtonBase)({
   position: "absolute",
   top: "calc(50% - 20px)",
   left: -23,
+  zIndex: 9999,
   transition: "opacity 500ms, left 500ms, width 500ms",
   "&.expanded": {
     left: -20,
@@ -55,8 +55,19 @@ const Slider = styled("div")({
   position: "absolute",
   left: 0,
   top: 0,
-  width: 300,
+  width: 0,
   bottom: 0,
+  overflow: "hidden",
+  transition: "opacity 500ms, left 500ms, width 500ms",
+  "&.expanded": {
+    width: 300,
+  },
+})
+const InnerSliderContent = styled("div")({
+  width: 300,
+  position: "absolute",
+  left: 0,
+  top: 0,
 })
 
 const getInitialExpandedState = () => {
@@ -79,7 +90,9 @@ export const RightSidebar = ({ children, initialExpandedState }) => {
 
   return (
     <Container className={expanded ? "expanded" : ""}>
-      <Slider>{children}</Slider>
+      <Slider className={expanded ? "expanded" : ""}>
+        <InnerSliderContent>{children}</InnerSliderContent>
+      </Slider>
       <Expander onClick={toggleExpanded} className={expanded ? "expanded" : ""}>
         {expanded ? (
           <ContractIcon className="icon" />

@@ -7,7 +7,7 @@ const Container = styled("div")({
   flexGrow: 1,
   height: "100%",
   backgroundColor: grey[50],
-  overflow: "hidden"
+  overflow: "hidden",
 })
 const ShadowOverlay = styled("div")({
   content: "' '",
