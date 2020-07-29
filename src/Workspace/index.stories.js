@@ -10,31 +10,33 @@ export default {
 }
 
 export const Basic = () => (
-  <div style={{ height: 400 }}>
-    <Workspace
-      allowFullscreen
-      headerItems={[{ name: "Prev" }, { name: "Next" }, { name: "Save" }]}
-      onClickHeaderItem={action("onClickHeaderItem")}
-      onClickIconSidebarItem={action("onClickIconSidebarItem")}
-      iconSidebarItems={[
-        {
-          name: "Play",
-          helperText: "Play Tooltip",
-        },
-        {
-          name: "Pause",
-          helperText: "Pause Tooltip",
-        },
-      ]}
-      rightSidebarItems={[
-        <SidebarBox icon={<FeaturedVideoIcon />} title="Region Selector">
-          Hello world!
-        </SidebarBox>,
-      ]}
+  <Workspace
+    allowFullscreen
+    headerItems={[{ name: "Prev" }, { name: "Next" }, { name: "Save" }]}
+    onClickHeaderItem={action("onClickHeaderItem")}
+    onClickIconSidebarItem={action("onClickIconSidebarItem")}
+    iconSidebarItems={[
+      {
+        name: "Play",
+        helperText: "Play Tooltip",
+      },
+      {
+        name: "Pause",
+        helperText: "Pause Tooltip",
+      },
+    ]}
+    rightSidebarItems={[
+      <SidebarBox icon={<FeaturedVideoIcon />} title="Region Selector">
+        Hello world!
+      </SidebarBox>,
+    ]}
+  >
+    <div
+      style={{ margin: 40, width: 400, height: 400, backgroundColor: "#f00" }}
     >
-      Hello World!
-    </Workspace>
-  </div>
+      Hello World
+    </div>
+  </Workspace>
 )
 
 Basic.story = {
@@ -77,4 +79,40 @@ export const WithIconDictionary = () => (
 
 WithIconDictionary.story = {
   name: "WithIconDictionary",
+}
+
+export const FullWidthHeightViewport = () => (
+  <div style={{ width: "100vw", height: "100vh" }}>
+    <Workspace
+      allowFullscreen
+      headerItems={[{ name: "Prev" }, { name: "Next" }, { name: "Save" }]}
+      onClickHeaderItem={action("onClickHeaderItem")}
+      onClickIconSidebarItem={action("onClickIconSidebarItem")}
+      iconSidebarItems={[
+        {
+          name: "Play",
+          helperText: "Play Tooltip",
+        },
+        {
+          name: "Pause",
+          helperText: "Pause Tooltip",
+        },
+      ]}
+      rightSidebarItems={[
+        <SidebarBox icon={<FeaturedVideoIcon />} title="Region Selector">
+          Hello world!
+        </SidebarBox>,
+      ]}
+    >
+      <div
+        style={{ margin: 40, width: 400, height: 400, backgroundColor: "#f00" }}
+      >
+        Hello World
+      </div>
+    </Workspace>
+  </div>
+)
+
+FullWidthHeightViewport.story = {
+  name: "FullWidthHeightViewport",
 }

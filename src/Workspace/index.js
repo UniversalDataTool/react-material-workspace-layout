@@ -11,6 +11,7 @@ const emptyObj = {}
 
 const Container = styled("div")({
   display: "flex",
+  width: "100%",
   flexDirection: "column",
   height: "100%",
   overflow: "hidden",
@@ -19,6 +20,7 @@ const Container = styled("div")({
 const SidebarsAndContent = styled("div")({
   display: "flex",
   flexGrow: 1,
+  width: "100%",
   height: "100%",
   overflow: "hidden",
   maxWidth: "100vw",
