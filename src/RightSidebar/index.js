@@ -10,6 +10,7 @@ const Container = styled("div")({
   display: "flex",
   flexDirection: "column",
   height: "100%",
+  flexShrink: 0,
   backgroundColor: "#fff",
   position: "relative",
   transition: "width 500ms",

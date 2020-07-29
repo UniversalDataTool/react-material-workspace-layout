@@ -70,7 +70,7 @@ export const WithIconDictionary = () => (
         </SidebarBox>,
       ]}
     >
-      Hello World!
+      <div style={{ width: "150vw", height: "150vh" }}>Hello World!</div>
     </Workspace>
   </div>
 )

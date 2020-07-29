@@ -11,6 +11,7 @@ const Container = styled("div")({
   display: "flex",
   flexDirection: "column",
   backgroundColor: "#fff",
+  flexShrink: 0,
 })
 
 type Props = {

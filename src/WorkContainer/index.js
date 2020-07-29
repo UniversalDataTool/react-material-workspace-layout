@@ -5,6 +5,7 @@ import { grey } from "@material-ui/core/colors"
 const Container = styled("div")({
   position: "relative",
   flexGrow: 1,
+  flexShrink: 1,
   height: "100%",
   backgroundColor: grey[50],
   overflow: "hidden",
