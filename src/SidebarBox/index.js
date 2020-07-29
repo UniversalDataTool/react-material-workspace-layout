@@ -12,7 +12,7 @@ import useEventCallback from "use-event-callback"
 import Typography from "@material-ui/core/Typography"
 
 const useStyles = makeStyles({
-  container: { margin: 8 },
+  container: { margin: 8, border: "1px solid #ccc" },
   header: {
     display: "flex",
     flexDirection: "row",
