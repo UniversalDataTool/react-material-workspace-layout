@@ -11,6 +11,7 @@ const Container = styled("div")({
   backgroundColor: "#fff",
   borderBottom: "1px solid #ccc",
   alignItems: "center",
+  flexShrink: 1,
   boxSizing: "border-box",
 })
 
@@ -31,8 +32,7 @@ export const Header = ({
 }: Props) => {
   return (
     <Container>
-      {leftSideContent}
-      <Box flexGrow={1}></Box>
+      <Box flexGrow={1}>{leftSideContent}</Box>
       {items.map((item) => (
         <HeaderButton
           key={item.name}
