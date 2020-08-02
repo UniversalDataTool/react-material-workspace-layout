@@ -76,7 +76,7 @@ const getInitialExpandedState = () => {
   return Boolean(window.__REACT_WORKSPACE_LAYOUT_EXPANDED_STATE)
 }
 
-export const RightSidebar = ({ children, initialExpandedState }) => {
+export const RightSidebar = ({ children, initialExpandedState, height }) => {
   const [expanded, toggleExpanded] = useReducer(
     (state) => !state,
     initialExpandedState === undefined
@@ -90,8 +90,10 @@ export const RightSidebar = ({ children, initialExpandedState }) => {
     }
   }, [initialExpandedState, expanded])
 
+  const containerStyle = useMemo(() => ({ height: height || "100%" }), [height])
+
   return (
-    <Container className={expanded ? "expanded" : ""}>
+    <Container className={expanded ? "expanded" : ""} style={containerStyle}>
       <Slider className={expanded ? "expanded" : ""}>
         <InnerSliderContent>{children}</InnerSliderContent>
       </Slider>
