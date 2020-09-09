@@ -10,31 +10,33 @@ export default {
 }
 
 export const Basic = () => (
-  <div style={{ height: 400 }}>
-    <Workspace
-      allowFullscreen
-      headerItems={[{ name: "Prev" }, { name: "Next" }, { name: "Save" }]}
-      onClickHeaderItem={action("onClickHeaderItem")}
-      onClickIconSidebarItem={action("onClickIconSidebarItem")}
-      iconSidebarItems={[
-        {
-          name: "Play",
-          helperText: "Play Tooltip",
-        },
-        {
-          name: "Pause",
-          helperText: "Pause Tooltip",
-        },
-      ]}
-      rightSidebarItems={[
-        <SidebarBox icon={<FeaturedVideoIcon />} title="Region Selector">
-          Hello world!
-        </SidebarBox>,
-      ]}
+  <Workspace
+    allowFullscreen
+    headerItems={[{ name: "Prev" }, { name: "Next" }, { name: "Save" }]}
+    onClickHeaderItem={action("onClickHeaderItem")}
+    onClickIconSidebarItem={action("onClickIconSidebarItem")}
+    iconSidebarItems={[
+      {
+        name: "Play",
+        helperText: "Play Tooltip",
+      },
+      {
+        name: "Pause",
+        helperText: "Pause Tooltip",
+      },
+    ]}
+    rightSidebarItems={[
+      <SidebarBox icon={<FeaturedVideoIcon />} title="Region Selector">
+        Hello world!
+      </SidebarBox>,
+    ]}
+  >
+    <div
+      style={{ margin: 40, width: 400, height: 400, backgroundColor: "#f00" }}
     >
-      Hello World!
-    </Workspace>
-  </div>
+      Hello World
+    </div>
+  </Workspace>
 )
 
 Basic.story = {
@@ -70,11 +72,48 @@ export const WithIconDictionary = () => (
         </SidebarBox>,
       ]}
     >
-      Hello World!
+      <div style={{ width: "150vw", height: "150vh" }}>Hello World!</div>
     </Workspace>
   </div>
 )
 
 WithIconDictionary.story = {
   name: "WithIconDictionary",
+}
+
+export const FullWidthHeightViewport = () => (
+  <div style={{ width: "90vw", height: "90vh" }}>
+    <Workspace
+      allowFullscreen
+      headerItems={[{ name: "Prev" }, { name: "Next" }, { name: "Save" }]}
+      onClickHeaderItem={action("onClickHeaderItem")}
+      onClickIconSidebarItem={action("onClickIconSidebarItem")}
+      selectedTools={["play"]}
+      iconSidebarItems={[
+        {
+          name: "Play",
+          helperText: "Play Tooltip",
+        },
+        {
+          name: "Pause",
+          helperText: "Pause Tooltip",
+        },
+      ]}
+      rightSidebarItems={[
+        <SidebarBox icon={<FeaturedVideoIcon />} title="Region Selector">
+          Hello world!
+        </SidebarBox>,
+      ]}
+    >
+      <div
+        style={{ margin: 40, width: 400, height: 400, backgroundColor: "#f00" }}
+      >
+        Hello World
+      </div>
+    </Workspace>
+  </div>
+)
+
+FullWidthHeightViewport.story = {
+  name: "FullWidthHeightViewport",
 }

@@ -10,6 +10,7 @@ const Container = styled("div")({
   display: "flex",
   flexDirection: "column",
   height: "100%",
+  flexShrink: 0,
   backgroundColor: "#fff",
   position: "relative",
   transition: "width 500ms",
@@ -53,7 +54,7 @@ const Expander = styled(ButtonBase)({
 
 const Slider = styled("div")({
   position: "absolute",
-  left: 0,
+  right: 0,
   top: 0,
   width: 0,
   bottom: 0,
@@ -66,15 +67,16 @@ const Slider = styled("div")({
 const InnerSliderContent = styled("div")({
   width: 300,
   position: "absolute",
-  left: 0,
+  right: 0,
   top: 0,
+  bottom: 0,
 })
 
 const getInitialExpandedState = () => {
   return Boolean(window.__REACT_WORKSPACE_LAYOUT_EXPANDED_STATE)
 }
 
-export const RightSidebar = ({ children, initialExpandedState }) => {
+export const RightSidebar = ({ children, initialExpandedState, height }) => {
   const [expanded, toggleExpanded] = useReducer(
     (state) => !state,
     initialExpandedState === undefined
@@ -88,8 +90,10 @@ export const RightSidebar = ({ children, initialExpandedState }) => {
     }
   }, [initialExpandedState, expanded])
 
+  const containerStyle = useMemo(() => ({ height: height || "100%" }), [height])
+
   return (
-    <Container className={expanded ? "expanded" : ""}>
+    <Container className={expanded ? "expanded" : ""} style={containerStyle}>
       <Slider className={expanded ? "expanded" : ""}>
         <InnerSliderContent>{children}</InnerSliderContent>
       </Slider>
