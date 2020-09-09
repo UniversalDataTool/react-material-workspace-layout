@@ -7,7 +7,7 @@ const Container = styled("div")({
   flexGrow: 1,
   height: "100%",
   backgroundColor: grey[50],
-  overflow: "scroll",
+  overflowY: "auto",
 })
 const ShadowOverlay = styled("div")({
   content: "' '",
