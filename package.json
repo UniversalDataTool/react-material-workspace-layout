@@ -12,9 +12,11 @@
   "scripts": {
     "start": "start-storybook -p 9009 -s public",
     "storybook": "npm run start",
-    "build": "rimraf dist && NODE_ENV=production babel ./src --ignore \"src/**/*.stories.js\" --out-dir=./dist && cp package.json ./dist/package.json",
     "test": "react-scripts test",
-    "build:storybook": "build-storybook -s public"
+    "build:storybook": "build-storybook -s public",
+    "build": "npm run build:babel && cp ./package.json ./dist/package.json && cp ./README.md ./dist/README.md",
+    "build:babel": "NODE_ENV=production babel ./src --ignore \"src/**/*.story.js\" --out-dir=./dist && rm dist/index.js && cp dist/lib.js dist/index.js",
+    "release": "npm run build && cd dist && npm publish"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -34,6 +36,7 @@
   "devDependencies": {
     "@babel/cli": "^7.10.1",
     "@babel/core": "^7.10.1",
+    "@semantic-release/git": "^9.0.0",
     "@storybook/addon-actions": "^5.3.18",
     "@storybook/addon-links": "^5.3.18",
     "@storybook/addons": "^5.3.18",
