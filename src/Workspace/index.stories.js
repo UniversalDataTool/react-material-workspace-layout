@@ -23,7 +23,7 @@ export const Basic = () => (
       {
         name: "Pause",
         helperText: "Pause Tooltip",
-      },
+      }
     ]}
     rightSidebarItems={[
       <SidebarBox icon={<FeaturedVideoIcon />} title="Region Selector">
