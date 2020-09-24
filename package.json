@@ -1,6 +1,10 @@
 {
   "name": "react-material-workspace-layout",
   "version": "1.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/UniversalDataTool/react-material-workspace-layout.git"
+  },
   "dependencies": {
     "@material-ui/core": "^4.10.0",
     "@material-ui/icons": "^4.9.1",
