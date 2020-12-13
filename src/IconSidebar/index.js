@@ -23,10 +23,12 @@ type Props = {
   |}>,
 }
 
+const emptyAr = []
+
 export const IconSidebar = ({
-  items = [],
+  items = emptyAr,
   onClickItem,
-  selectedTools,
+  selectedTools = emptyAr,
 }: Props) => {
   const customIconMapping = useIconDictionary()
   return (

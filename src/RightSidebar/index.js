@@ -73,22 +73,28 @@ const InnerSliderContent = styled("div")({
 })
 
 const getInitialExpandedState = () => {
-  return Boolean(window.__REACT_WORKSPACE_LAYOUT_EXPANDED_STATE)
+  try {
+    return JSON.parse(window.localStorage.__REACT_WORKSPACE_LAYOUT_EXPANDED)
+  } catch (e) {
+    return window.innerWidth > 1000 ? true : false
+  }
 }
 
-export const RightSidebar = ({ children, initialExpandedState, height }) => {
+export const RightSidebar = ({ children, initiallyExpanded, height }) => {
   const [expanded, toggleExpanded] = useReducer(
     (state) => !state,
-    initialExpandedState === undefined
+    initiallyExpanded === undefined
       ? getInitialExpandedState()
-      : initialExpandedState
+      : initiallyExpanded
   )
 
   useEffect(() => {
-    if (initialExpandedState !== undefined) {
-      window.__REACT_WORKSPACE_LAYOUT_EXPANDED_STATE = expanded
+    if (initiallyExpanded === undefined) {
+      window.localStorage.__REACT_WORKSPACE_LAYOUT_EXPANDED = JSON.stringify(
+        expanded
+      )
     }
-  }, [initialExpandedState, expanded])
+  }, [initiallyExpanded, expanded])
 
   const containerStyle = useMemo(() => ({ height: height || "100%" }), [height])
 

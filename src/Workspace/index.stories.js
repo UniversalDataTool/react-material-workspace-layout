@@ -3,6 +3,7 @@ import { action } from "@storybook/addon-actions"
 import Workspace from "./"
 import SidebarBox from "../SidebarBox"
 import FeaturedVideoIcon from "@material-ui/icons/FeaturedVideo"
+import PlayIcon from "@material-ui/icons/PlayArrow"
 
 export default {
   title: "Workspace",
@@ -15,6 +16,7 @@ export const Basic = () => (
     headerItems={[{ name: "Prev" }, { name: "Next" }, { name: "Save" }]}
     onClickHeaderItem={action("onClickHeaderItem")}
     onClickIconSidebarItem={action("onClickIconSidebarItem")}
+    rightSidebarExpanded
     iconSidebarItems={[
       {
         name: "Play",
@@ -23,10 +25,13 @@ export const Basic = () => (
       {
         name: "Pause",
         helperText: "Pause Tooltip",
-      }
+      },
     ]}
     rightSidebarItems={[
       <SidebarBox icon={<FeaturedVideoIcon />} title="Region Selector">
+        Hello world!
+      </SidebarBox>,
+      <SidebarBox icon={<PlayIcon />} title="Playable GIFs">
         Hello world!
       </SidebarBox>,
     ]}

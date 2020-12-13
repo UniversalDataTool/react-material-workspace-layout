@@ -37,6 +37,7 @@ export default ({
   onClickIconSidebarItem,
   headerLeftSide = null,
   iconDictionary = emptyObj,
+  rightSidebarExpanded,
   children,
 }) => {
   const [workContainerRef, workContainerSize] = useDimensions()
@@ -58,7 +59,10 @@ export default ({
           )}
           <WorkContainer ref={workContainerRef}>{children}</WorkContainer>
           {rightSidebarItems.length === 0 ? null : (
-            <RightSidebar height={workContainerSize.height || 0}>
+            <RightSidebar
+              initiallyExpanded={rightSidebarExpanded}
+              height={workContainerSize.height || 0}
+            >
               {rightSidebarItems}
             </RightSidebar>
           )}
