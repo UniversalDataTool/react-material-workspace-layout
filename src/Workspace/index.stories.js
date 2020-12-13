@@ -15,6 +15,7 @@ export const Basic = () => (
     headerItems={[{ name: "Prev" }, { name: "Next" }, { name: "Save" }]}
     onClickHeaderItem={action("onClickHeaderItem")}
     onClickIconSidebarItem={action("onClickIconSidebarItem")}
+    rightSidebarExpanded
     iconSidebarItems={[
       {
         name: "Play",
@@ -23,7 +24,7 @@ export const Basic = () => (
       {
         name: "Pause",
         helperText: "Pause Tooltip",
-      }
+      },
     ]}
     rightSidebarItems={[
       <SidebarBox icon={<FeaturedVideoIcon />} title="Region Selector">
