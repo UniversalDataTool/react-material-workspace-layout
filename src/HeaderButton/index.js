@@ -5,6 +5,7 @@ import Button from "@material-ui/core/Button"
 import { styled } from "@material-ui/core/styles"
 import { useIconDictionary } from "../icon-dictionary.js"
 import { iconMapping } from "../icon-mapping.js"
+import { colors } from "@material-ui/core"
 
 const defaultNameIconMapping = iconMapping
 
@@ -18,7 +19,9 @@ const getIcon = (name, customIconMapping) => {
 
 const StyledButton = styled(Button)({
   textTransform: "none",
-  width: 80,
+  width: 64,
+  paddingTop: 8,
+  paddingBottom: 4,
   marginLeft: 4,
   marginRight: 4,
 })
@@ -26,11 +29,18 @@ const ButtonInnerContent = styled("div")({
   display: "flex",
   flexDirection: "column",
 })
-const IconContainer = styled("div")({})
+const IconContainer = styled("div")({
+  color: colors.grey[700],
+  height: 20,
+  "& .MuiSvgIcon-root": {
+    width: 18,
+    height: 18,
+  },
+})
 const Text = styled("div")({
   fontWeight: "bold",
-  lineHeight: 1,
-  height: 28,
+  fontSize: 11,
+  color: colors.grey[800],
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
