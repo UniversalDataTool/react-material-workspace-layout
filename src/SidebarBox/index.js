@@ -142,7 +142,7 @@ export const SidebarBox = ({
               className="panel"
               style={{ display: "flex", overflow: "hidden", height: 500 }}
             >
-              {content}
+              <div>{content}</div>
             </div>
           </ResizePanel>
         </Collapse>
