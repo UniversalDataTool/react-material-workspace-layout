@@ -19,11 +19,11 @@ const getIcon = (name, customIconMapping) => {
 
 const StyledButton = styled(Button)({
   textTransform: "none",
-  width: 64,
+  width: 60,
   paddingTop: 8,
   paddingBottom: 4,
-  marginLeft: 4,
-  marginRight: 4,
+  marginLeft: 1,
+  marginRight: 1,
 })
 const ButtonInnerContent = styled("div")({
   display: "flex",
