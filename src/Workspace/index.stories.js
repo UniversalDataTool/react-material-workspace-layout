@@ -3,6 +3,7 @@ import { action } from "@storybook/addon-actions"
 import Workspace from "./"
 import SidebarBox from "../SidebarBox"
 import FeaturedVideoIcon from "@material-ui/icons/FeaturedVideo"
+import PlayIcon from "@material-ui/icons/PlayArrow"
 
 export default {
   title: "Workspace",
@@ -28,6 +29,9 @@ export const Basic = () => (
     ]}
     rightSidebarItems={[
       <SidebarBox icon={<FeaturedVideoIcon />} title="Region Selector">
+        Hello world!
+      </SidebarBox>,
+      <SidebarBox icon={<PlayIcon />} title="Playable GIFs">
         Hello world!
       </SidebarBox>,
     ]}

@@ -1,6 +1,6 @@
 // @flow
 
-import React, { useState, memo } from "react"
+import React, { useState, memo, useCallback } from "react"
 import Paper from "@material-ui/core/Paper"
 import { makeStyles } from "@material-ui/core/styles"
 import ExpandIcon from "@material-ui/icons/ExpandMore"
@@ -11,26 +11,40 @@ import classnames from "classnames"
 import useEventCallback from "use-event-callback"
 import Typography from "@material-ui/core/Typography"
 import { useIconDictionary } from "../icon-dictionary.js"
+import ResizePanel from "react-resize-panel"
 
 const useStyles = makeStyles({
-  container: { margin: 8, border: "1px solid #ccc" },
+  container: {
+    borderBottom: `2px solid ${grey[400]}`,
+    "&:first-child": { borderTop: `1px solid ${grey[400]}` },
+  },
   header: {
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    padding: 8,
+    padding: 4,
     paddingLeft: 16,
-    paddingRight: 16,
+    paddingRight: 12,
+    "& .iconContainer": {
+      color: grey[600],
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      "& .MuiSvgIcon-root": {
+        width: 16,
+        height: 16,
+      },
+    },
   },
   title: {
-    fontSize: 14,
-    fontWeight: "bold",
+    fontSize: 11,
     flexGrow: 1,
+    fontWeight: 800,
     paddingLeft: 8,
     color: grey[800],
     "& span": {
       color: grey[600],
-      fontSize: 12,
+      fontSize: 11,
     },
   },
   expandButton: {
@@ -38,7 +52,6 @@ const useStyles = makeStyles({
     width: 30,
     height: 30,
     "& .icon": {
-      marginTop: -6,
       width: 20,
       height: 20,
       transition: "500ms transform",
@@ -57,13 +70,28 @@ const useStyles = makeStyles({
   },
 })
 
+const getExpandedFromLocalStorage = (title) => {
+  try {
+    return JSON.parse(
+      window.localStorage[`__REACT_WORKSPACE_SIDEBAR_EXPANDED_${title}`]
+    )
+  } catch (e) {
+    return false
+  }
+}
+const setExpandedInLocalStorage = (title, expanded) => {
+  window.localStorage[
+    `__REACT_WORKSPACE_SIDEBAR_EXPANDED_${title}`
+  ] = JSON.stringify(expanded)
+}
+
 export const SidebarBox = ({
   icon,
   title,
   subTitle,
   children,
   noScroll = false,
-  expandedByDefault = false,
+  expandedByDefault,
 }) => {
   const classes = useStyles()
   const content = (
@@ -74,14 +102,28 @@ export const SidebarBox = ({
     </div>
   )
 
-  const [expanded, changeExpanded] = useState(expandedByDefault)
+  const [expanded, changeExpandedState] = useState(
+    expandedByDefault === undefined
+      ? getExpandedFromLocalStorage(title)
+      : expandedByDefault
+  )
+  const changeExpanded = useCallback(
+    (expanded) => {
+      changeExpandedState(expanded)
+      setExpandedInLocalStorage(title, expanded)
+    },
+    [changeExpandedState, title]
+  )
+
   const toggleExpanded = useEventCallback(() => changeExpanded(!expanded))
   const customIconMapping = useIconDictionary()
   const TitleIcon = customIconMapping[title.toLowerCase()]
   return (
-    <Paper className={classes.container}>
+    <div className={classes.container}>
       <div className={classes.header}>
-        {icon || <TitleIcon />}
+        <div className="iconContainer">
+          {icon || <TitleIcon className={classes.titleIcon} />}
+        </div>
         <Typography className={classes.title}>
           {title} <span>{subTitle}</span>
         </Typography>
@@ -94,9 +136,18 @@ export const SidebarBox = ({
           content
         ) : null
       ) : (
-        <Collapse in={expanded}>{content}</Collapse>
+        <Collapse in={expanded}>
+          <ResizePanel direction="s" style={{ height: 200 }}>
+            <div
+              className="panel"
+              style={{ display: "flex", overflow: "hidden", height: 500 }}
+            >
+              {content}
+            </div>
+          </ResizePanel>
+        </Collapse>
       )}
-    </Paper>
+    </div>
   )
 }
 
