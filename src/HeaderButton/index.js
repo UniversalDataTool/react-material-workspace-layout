@@ -29,14 +29,15 @@ const ButtonInnerContent = styled("div")({
   display: "flex",
   flexDirection: "column",
 })
-const IconContainer = styled("div")({
+const IconContainer = styled("div")(({ textHidden }) => ({
   color: colors.grey[700],
-  height: 20,
+  height: textHidden ? 32 : 20,
+  paddingTop: textHidden ? 8 : 0,
   "& .MuiSvgIcon-root": {
     width: 18,
     height: 18,
   },
-})
+}))
 const Text = styled("div")({
   fontWeight: "bold",
   fontSize: 11,
@@ -46,17 +47,25 @@ const Text = styled("div")({
   justifyContent: "center",
 })
 
-export const HeaderButton = ({ name, icon, disabled, onClick }) => {
+export const HeaderButton = ({
+  name,
+  icon,
+  disabled,
+  onClick,
+  hideText = false,
+}) => {
   const customIconMapping = useIconDictionary()
   return (
     <StyledButton onClick={onClick} disabled={disabled}>
       <ButtonInnerContent>
-        <IconContainer>
+        <IconContainer textHidden={hideText}>
           {icon || getIcon(name, customIconMapping)}
         </IconContainer>
-        <Text>
-          <div>{name}</div>
-        </Text>
+        {!hideText && (
+          <Text>
+            <div>{name}</div>
+          </Text>
+        )}
       </ButtonInnerContent>
     </StyledButton>
   )

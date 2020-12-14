@@ -27,6 +27,7 @@ type Props = {|
 
 export const Header = ({
   leftSideContent = null,
+  hideHeaderText = false,
   items,
   onClickItem,
 }: Props) => {
@@ -36,6 +37,7 @@ export const Header = ({
       {items.map((item) => (
         <HeaderButton
           key={item.name}
+          hideText={hideHeaderText}
           onClick={() => onClickItem(item)}
           {...item}
         />

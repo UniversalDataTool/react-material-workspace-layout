@@ -16,7 +16,7 @@ const Container = styled("div")({
   flexDirection: "column",
   height: "100%",
   overflow: "hidden",
-  maxWidth: "100vw"
+  maxWidth: "100vw",
 })
 const SidebarsAndContent = styled("div")({
   display: "flex",
@@ -24,7 +24,7 @@ const SidebarsAndContent = styled("div")({
   width: "100%",
   height: "100%",
   overflow: "hidden",
-  maxWidth: "100vw"
+  maxWidth: "100vw",
 })
 
 export default ({
@@ -38,17 +38,22 @@ export default ({
   headerLeftSide = null,
   iconDictionary = emptyObj,
   rightSidebarExpanded,
-  children
+  hideHeader = false,
+  hideHeaderText = false,
+  children,
 }) => {
   const [sidebarAndContentRef, sidebarAndContent] = useDimensions()
   return (
     <IconDictionaryContext.Provider value={iconDictionary}>
       <Container style={style}>
-        <Header
-          leftSideContent={headerLeftSide}
-          onClickItem={onClickHeaderItem}
-          items={headerItems}
-        />
+        {!hideHeader && (
+          <Header
+            hideHeaderText={hideHeaderText}
+            leftSideContent={headerLeftSide}
+            onClickItem={onClickHeaderItem}
+            items={headerItems}
+          />
+        )}
         <SidebarsAndContent ref={sidebarAndContentRef}>
           {iconSidebarItems.length === 0 ? null : (
             <IconSidebar

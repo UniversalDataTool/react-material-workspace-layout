@@ -122,3 +122,79 @@ export const FullWidthHeightViewport = () => (
 FullWidthHeightViewport.story = {
   name: "FullWidthHeightViewport",
 }
+
+export const HideHeader = () => (
+  <div style={{ width: "90vw", height: "90vh" }}>
+    <Workspace
+      allowFullscreen
+      hideHeader
+      headerItems={[{ name: "Prev" }, { name: "Next" }, { name: "Save" }]}
+      onClickHeaderItem={action("onClickHeaderItem")}
+      onClickIconSidebarItem={action("onClickIconSidebarItem")}
+      selectedTools={["play"]}
+      iconSidebarItems={[
+        {
+          name: "Play",
+          helperText: "Play Tooltip",
+        },
+        {
+          name: "Pause",
+          helperText: "Pause Tooltip",
+        },
+      ]}
+      rightSidebarItems={[
+        <SidebarBox icon={<FeaturedVideoIcon />} title="Region Selector">
+          Hello world!
+        </SidebarBox>,
+      ]}
+    >
+      <div
+        style={{ margin: 40, width: 400, height: 400, backgroundColor: "#f00" }}
+      >
+        Hello World
+      </div>
+    </Workspace>
+  </div>
+)
+
+HideHeader.story = {
+  name: "HideHeader",
+}
+
+export const HideHeaderText = () => (
+  <div style={{ width: "90vw", height: "90vh" }}>
+    <Workspace
+      allowFullscreen
+      hideHeaderText
+      headerItems={[{ name: "Prev" }, { name: "Next" }, { name: "Save" }]}
+      onClickHeaderItem={action("onClickHeaderItem")}
+      onClickIconSidebarItem={action("onClickIconSidebarItem")}
+      selectedTools={["play"]}
+      iconSidebarItems={[
+        {
+          name: "Play",
+          helperText: "Play Tooltip",
+        },
+        {
+          name: "Pause",
+          helperText: "Pause Tooltip",
+        },
+      ]}
+      rightSidebarItems={[
+        <SidebarBox icon={<FeaturedVideoIcon />} title="Region Selector">
+          Hello world!
+        </SidebarBox>,
+      ]}
+    >
+      <div
+        style={{ margin: 40, width: 400, height: 400, backgroundColor: "#f00" }}
+      >
+        Hello World
+      </div>
+    </Workspace>
+  </div>
+)
+
+HideHeaderText.story = {
+  name: "HideHeaderText",
+}
