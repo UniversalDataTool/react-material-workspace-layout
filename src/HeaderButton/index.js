@@ -44,6 +44,7 @@ const Text = styled("div")({
   color: colors.grey[800],
   display: "flex",
   alignItems: "center",
+  lineHeight: 1,
   justifyContent: "center",
 })
 
