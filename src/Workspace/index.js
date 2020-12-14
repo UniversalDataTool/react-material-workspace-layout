@@ -16,7 +16,7 @@ const Container = styled("div")({
   flexDirection: "column",
   height: "100%",
   overflow: "hidden",
-  maxWidth: "100vw",
+  maxWidth: "100vw"
 })
 const SidebarsAndContent = styled("div")({
   display: "flex",
@@ -24,7 +24,7 @@ const SidebarsAndContent = styled("div")({
   width: "100%",
   height: "100%",
   overflow: "hidden",
-  maxWidth: "100vw",
+  maxWidth: "100vw"
 })
 
 export default ({
@@ -38,9 +38,9 @@ export default ({
   headerLeftSide = null,
   iconDictionary = emptyObj,
   rightSidebarExpanded,
-  children,
+  children
 }) => {
-  const [workContainerRef, workContainerSize] = useDimensions()
+  const [sidebarAndContentRef, sidebarAndContent] = useDimensions()
   return (
     <IconDictionaryContext.Provider value={iconDictionary}>
       <Container style={style}>
@@ -49,7 +49,7 @@ export default ({
           onClickItem={onClickHeaderItem}
           items={headerItems}
         />
-        <SidebarsAndContent>
+        <SidebarsAndContent ref={sidebarAndContentRef}>
           {iconSidebarItems.length === 0 ? null : (
             <IconSidebar
               onClickItem={onClickIconSidebarItem}
@@ -57,11 +57,11 @@ export default ({
               items={iconSidebarItems}
             />
           )}
-          <WorkContainer ref={workContainerRef}>{children}</WorkContainer>
+          <WorkContainer>{children}</WorkContainer>
           {rightSidebarItems.length === 0 ? null : (
             <RightSidebar
               initiallyExpanded={rightSidebarExpanded}
-              height={workContainerSize.height || 0}
+              height={sidebarAndContent.height || 0}
             >
               {rightSidebarItems}
             </RightSidebar>

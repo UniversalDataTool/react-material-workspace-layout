@@ -11,12 +11,12 @@ import classnames from "classnames"
 import useEventCallback from "use-event-callback"
 import Typography from "@material-ui/core/Typography"
 import { useIconDictionary } from "../icon-dictionary.js"
-import ResizePanel from "react-resize-panel"
+import ResizePanel from "@seveibar/react-resize-panel"
 
 const useStyles = makeStyles({
   container: {
     borderBottom: `2px solid ${grey[400]}`,
-    "&:first-child": { borderTop: `1px solid ${grey[400]}` },
+    "&:first-child": { borderTop: `1px solid ${grey[400]}` }
   },
   header: {
     display: "flex",
@@ -32,9 +32,9 @@ const useStyles = makeStyles({
       justifyContent: "center",
       "& .MuiSvgIcon-root": {
         width: 16,
-        height: 16,
-      },
-    },
+        height: 16
+      }
+    }
   },
   title: {
     fontSize: 11,
@@ -44,8 +44,8 @@ const useStyles = makeStyles({
     color: grey[800],
     "& span": {
       color: grey[600],
-      fontSize: 11,
-    },
+      fontSize: 11
+    }
   },
   expandButton: {
     padding: 0,
@@ -56,21 +56,21 @@ const useStyles = makeStyles({
       height: 20,
       transition: "500ms transform",
       "&.expanded": {
-        transform: "rotate(180deg)",
-      },
-    },
+        transform: "rotate(180deg)"
+      }
+    }
   },
   expandedContent: {
     maxHeight: 300,
     overflowY: "auto",
     "&.noScroll": {
       overflowY: "visible",
-      overflow: "visible",
-    },
-  },
+      overflow: "visible"
+    }
+  }
 })
 
-const getExpandedFromLocalStorage = (title) => {
+const getExpandedFromLocalStorage = title => {
   try {
     return JSON.parse(
       window.localStorage[`__REACT_WORKSPACE_SIDEBAR_EXPANDED_${title}`]
@@ -91,7 +91,7 @@ export const SidebarBox = ({
   subTitle,
   children,
   noScroll = false,
-  expandedByDefault,
+  expandedByDefault
 }) => {
   const classes = useStyles()
   const content = (
@@ -108,7 +108,7 @@ export const SidebarBox = ({
       : expandedByDefault
   )
   const changeExpanded = useCallback(
-    (expanded) => {
+    expanded => {
       changeExpandedState(expanded)
       setExpandedInLocalStorage(title, expanded)
     },
