@@ -1,22 +1,24 @@
 // @flow
 
 import React, { useState, memo, useCallback } from "react"
-import Paper from "@material-ui/core/Paper"
-import { makeStyles } from "@material-ui/core/styles"
-import ExpandIcon from "@material-ui/icons/ExpandMore"
-import IconButton from "@material-ui/core/IconButton"
-import Collapse from "@material-ui/core/Collapse"
-import { grey } from "@material-ui/core/colors"
+import Paper from "@mui/material/Paper"
+import { makeStyles } from "@mui/styles"
+import { createTheme, ThemeProvider } from "@mui/material/styles"
+import ExpandIcon from "@mui/icons-material/ExpandMore"
+import IconButton from "@mui/material/IconButton"
+import Collapse from "@mui/material/Collapse"
+import { grey } from "@mui/material/colors"
 import classnames from "classnames"
 import useEventCallback from "use-event-callback"
-import Typography from "@material-ui/core/Typography"
+import Typography from "@mui/material/Typography"
 import { useIconDictionary } from "../icon-dictionary.js"
 import ResizePanel from "@seveibar/react-resize-panel"
 
-const useStyles = makeStyles({
+const theme = createTheme()
+const useStyles = makeStyles((theme) => ({
   container: {
     borderBottom: `2px solid ${grey[400]}`,
-    "&:first-child": { borderTop: `1px solid ${grey[400]}` }
+    "&:first-child": { borderTop: `1px solid ${grey[400]}` },
   },
   header: {
     display: "flex",
@@ -32,9 +34,9 @@ const useStyles = makeStyles({
       justifyContent: "center",
       "& .MuiSvgIcon-root": {
         width: 16,
-        height: 16
-      }
-    }
+        height: 16,
+      },
+    },
   },
   title: {
     fontSize: 11,
@@ -44,8 +46,8 @@ const useStyles = makeStyles({
     color: grey[800],
     "& span": {
       color: grey[600],
-      fontSize: 11
-    }
+      fontSize: 11,
+    },
   },
   expandButton: {
     padding: 0,
@@ -56,21 +58,21 @@ const useStyles = makeStyles({
       height: 20,
       transition: "500ms transform",
       "&.expanded": {
-        transform: "rotate(180deg)"
-      }
-    }
+        transform: "rotate(180deg)",
+      },
+    },
   },
   expandedContent: {
     maxHeight: 300,
     overflowY: "auto",
     "&.noScroll": {
       overflowY: "visible",
-      overflow: "visible"
-    }
-  }
-})
+      overflow: "visible",
+    },
+  },
+}))
 
-const getExpandedFromLocalStorage = title => {
+const getExpandedFromLocalStorage = (title) => {
   try {
     return JSON.parse(
       window.localStorage[`__REACT_WORKSPACE_SIDEBAR_EXPANDED_${title}`]
@@ -80,9 +82,8 @@ const getExpandedFromLocalStorage = title => {
   }
 }
 const setExpandedInLocalStorage = (title, expanded) => {
-  window.localStorage[
-    `__REACT_WORKSPACE_SIDEBAR_EXPANDED_${title}`
-  ] = JSON.stringify(expanded)
+  window.localStorage[`__REACT_WORKSPACE_SIDEBAR_EXPANDED_${title}`] =
+    JSON.stringify(expanded)
 }
 
 export const SidebarBox = ({
@@ -91,7 +92,7 @@ export const SidebarBox = ({
   subTitle,
   children,
   noScroll = false,
-  expandedByDefault
+  expandedByDefault,
 }) => {
   const classes = useStyles()
   const content = (
@@ -108,7 +109,7 @@ export const SidebarBox = ({
       : expandedByDefault
   )
   const changeExpanded = useCallback(
-    expanded => {
+    (expanded) => {
       changeExpandedState(expanded)
       setExpandedInLocalStorage(title, expanded)
     },
@@ -119,35 +120,39 @@ export const SidebarBox = ({
   const customIconMapping = useIconDictionary()
   const TitleIcon = customIconMapping[title.toLowerCase()]
   return (
-    <div className={classes.container}>
-      <div className={classes.header}>
-        <div className="iconContainer">
-          {icon || <TitleIcon className={classes.titleIcon} />}
+    <ThemeProvider theme={theme}>
+      <div className={classes.container}>
+        <div className={classes.header}>
+          <div className="iconContainer">
+            {icon || <TitleIcon className={classes.titleIcon} />}
+          </div>
+          <Typography className={classes.title}>
+            {title} <span>{subTitle}</span>
+          </Typography>
+          <IconButton onClick={toggleExpanded} className={classes.expandButton}>
+            <ExpandIcon
+              className={classnames("icon", expanded && "expanded")}
+            />
+          </IconButton>
         </div>
-        <Typography className={classes.title}>
-          {title} <span>{subTitle}</span>
-        </Typography>
-        <IconButton onClick={toggleExpanded} className={classes.expandButton}>
-          <ExpandIcon className={classnames("icon", expanded && "expanded")} />
-        </IconButton>
+        {noScroll ? (
+          expanded ? (
+            content
+          ) : null
+        ) : (
+          <Collapse in={expanded}>
+            <ResizePanel direction="s" style={{ height: 200 }}>
+              <div
+                className="panel"
+                style={{ display: "block", overflow: "hidden", height: 500 }}
+              >
+                {content}
+              </div>
+            </ResizePanel>
+          </Collapse>
+        )}
       </div>
-      {noScroll ? (
-        expanded ? (
-          content
-        ) : null
-      ) : (
-        <Collapse in={expanded}>
-          <ResizePanel direction="s" style={{ height: 200 }}>
-            <div
-              className="panel"
-              style={{ display: "block", overflow: "hidden", height: 500 }}
-            >
-              {content}
-            </div>
-          </ResizePanel>
-        </Collapse>
-      )}
-    </div>
+    </ThemeProvider>
   )
 }
 

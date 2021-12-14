@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import SidebarBox from "./"
-import FeaturedVideoIcon from "@material-ui/icons/FeaturedVideo"
+import FeaturedVideoIcon from "@mui/icons-material/FeaturedVideo"
 
 export default {
   title: "SidebarBox",

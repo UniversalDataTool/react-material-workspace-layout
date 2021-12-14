@@ -1,11 +1,13 @@
 import React, { useReducer, useEffect, useMemo } from "react"
-import { styled } from "@material-ui/core/styles"
-import ButtonBase from "@material-ui/core/ButtonBase"
-import ExpandIcon from "@material-ui/icons/KeyboardArrowLeft"
-import ContractIcon from "@material-ui/icons/KeyboardArrowRight"
-import { grey } from "@material-ui/core/colors"
+import { styled } from "@mui/styles"
+import { createTheme, ThemeProvider } from "@mui/material/styles"
+import ButtonBase from "@mui/material/ButtonBase"
+import ExpandIcon from "@mui/icons-material/KeyboardArrowLeft"
+import ContractIcon from "@mui/icons-material/KeyboardArrowRight"
+import { grey } from "@mui/material/colors"
 
-const Container = styled("div")({
+const theme = createTheme()
+const Container = styled("div")(({ theme }) => ({
   width: 0,
   display: "flex",
   flexDirection: "column",
@@ -17,9 +19,9 @@ const Container = styled("div")({
   "&.expanded": {
     width: 300,
   },
-})
+}))
 
-const Expander = styled(ButtonBase)({
+const Expander = styled(ButtonBase)(({ theme }) => ({
   width: 23,
   height: 40,
   display: "flex",
@@ -50,9 +52,9 @@ const Expander = styled(ButtonBase)({
   "& .icon": {
     marginLeft: 3,
   },
-})
+}))
 
-const Slider = styled("div")({
+const Slider = styled("div")(({ theme }) => ({
   position: "absolute",
   right: 0,
   top: 0,
@@ -63,14 +65,14 @@ const Slider = styled("div")({
   "&.expanded": {
     width: 300,
   },
-})
-const InnerSliderContent = styled("div")({
+}))
+const InnerSliderContent = styled("div")(({ theme }) => ({
   width: 300,
   position: "absolute",
   right: 0,
   top: 0,
   bottom: 0,
-})
+}))
 
 const getInitialExpandedState = () => {
   try {
@@ -90,27 +92,31 @@ export const RightSidebar = ({ children, initiallyExpanded, height }) => {
 
   useEffect(() => {
     if (initiallyExpanded === undefined) {
-      window.localStorage.__REACT_WORKSPACE_LAYOUT_EXPANDED = JSON.stringify(
-        expanded
-      )
+      window.localStorage.__REACT_WORKSPACE_LAYOUT_EXPANDED =
+        JSON.stringify(expanded)
     }
   }, [initiallyExpanded, expanded])
 
   const containerStyle = useMemo(() => ({ height: height || "100%" }), [height])
 
   return (
-    <Container className={expanded ? "expanded" : ""} style={containerStyle}>
-      <Slider className={expanded ? "expanded" : ""}>
-        <InnerSliderContent>{children}</InnerSliderContent>
-      </Slider>
-      <Expander onClick={toggleExpanded} className={expanded ? "expanded" : ""}>
-        {expanded ? (
-          <ContractIcon className="icon" />
-        ) : (
-          <ExpandIcon className="icon" />
-        )}
-      </Expander>
-    </Container>
+    <ThemeProvider theme={theme}>
+      <Container className={expanded ? "expanded" : ""} style={containerStyle}>
+        <Slider className={expanded ? "expanded" : ""}>
+          <InnerSliderContent>{children}</InnerSliderContent>
+        </Slider>
+        <Expander
+          onClick={toggleExpanded}
+          className={expanded ? "expanded" : ""}
+        >
+          {expanded ? (
+            <ContractIcon className="icon" />
+          ) : (
+            <ExpandIcon className="icon" />
+          )}
+        </Expander>
+      </Container>
+    </ThemeProvider>
   )
 }
 
