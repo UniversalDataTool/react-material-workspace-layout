@@ -1,7 +1,7 @@
 import React from "react"
 import RightSidebar from "./"
 import SidebarBox from "../SidebarBox"
-import FeaturedVideoIcon from "@material-ui/icons/FeaturedVideo"
+import FeaturedVideoIcon from "@mui/icons-material/FeaturedVideo"
 
 export default {
   title: "RightSidebar",

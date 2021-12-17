@@ -2,8 +2,8 @@ import React from "react"
 import { action } from "@storybook/addon-actions"
 import Workspace from "./"
 import SidebarBox from "../SidebarBox"
-import FeaturedVideoIcon from "@material-ui/icons/FeaturedVideo"
-import PlayIcon from "@material-ui/icons/PlayArrow"
+import FeaturedVideoIcon from "@mui/icons-material/FeaturedVideo"
+import PlayIcon from "@mui/icons-material/PlayArrow"
 
 export default {
   title: "Workspace",

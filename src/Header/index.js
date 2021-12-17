@@ -1,11 +1,13 @@
 import React from "react"
 import HeaderButton from "../HeaderButton"
-import Box from "@material-ui/core/Box"
-import { styled } from "@material-ui/core/styles"
+import Box from "@mui/material/Box"
+import { styled } from "@mui/styles"
+import { createTheme, ThemeProvider } from "@mui/material/styles"
 
+const theme = createTheme()
 const emptyObj = {}
 
-const Container = styled("div")({
+const Container = styled("div")(({ theme }) => ({
   width: "100%",
   display: "flex",
   backgroundColor: "#fff",
@@ -13,7 +15,7 @@ const Container = styled("div")({
   alignItems: "center",
   flexShrink: 1,
   boxSizing: "border-box",
-})
+}))
 
 type Props = {|
   leftSideContent?: ?React.Node,
@@ -32,17 +34,19 @@ export const Header = ({
   onClickItem,
 }: Props) => {
   return (
-    <Container>
-      <Box flexGrow={1}>{leftSideContent}</Box>
-      {items.map((item) => (
-        <HeaderButton
-          key={item.name}
-          hideText={hideHeaderText}
-          onClick={() => onClickItem(item)}
-          {...item}
-        />
-      ))}
-    </Container>
+    <ThemeProvider theme={theme}>
+      <Container>
+        <Box flexGrow={1}>{leftSideContent}</Box>
+        {items.map((item) => (
+          <HeaderButton
+            key={item.name}
+            hideText={hideHeaderText}
+            onClick={() => onClickItem(item)}
+            {...item}
+          />
+        ))}
+      </Container>
+    </ThemeProvider>
   )
 }
 

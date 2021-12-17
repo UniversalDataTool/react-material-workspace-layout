@@ -1,13 +1,13 @@
-import BackIcon from "@material-ui/icons/KeyboardArrowLeft"
-import NextIcon from "@material-ui/icons/KeyboardArrowRight"
-import PlayIcon from "@material-ui/icons/PlayArrow"
-import PauseIcon from "@material-ui/icons/Pause"
-import SettingsIcon from "@material-ui/icons/Settings"
-import HelpIcon from "@material-ui/icons/Help"
-import FullscreenIcon from "@material-ui/icons/Fullscreen"
-import ExitIcon from "@material-ui/icons/ExitToApp"
-import QueuePlayNextIcon from "@material-ui/icons/QueuePlayNext"
-import HotkeysIcon from "@material-ui/icons/Keyboard"
+import BackIcon from "@mui/icons-material/KeyboardArrowLeft"
+import NextIcon from "@mui/icons-material/KeyboardArrowRight"
+import PlayIcon from "@mui/icons-material/PlayArrow"
+import PauseIcon from "@mui/icons-material/Pause"
+import SettingsIcon from "@mui/icons-material/Settings"
+import HelpIcon from "@mui/icons-material/Help"
+import FullscreenIcon from "@mui/icons-material/Fullscreen"
+import ExitIcon from "@mui/icons-material/ExitToApp"
+import QueuePlayNextIcon from "@mui/icons-material/QueuePlayNext"
+import HotkeysIcon from "@mui/icons-material/Keyboard"
 
 export const iconMapping = {
   back: BackIcon,
